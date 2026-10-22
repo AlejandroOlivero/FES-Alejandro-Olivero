@@ -121,12 +121,32 @@ else:
 # d'Internet del router està encès. Segons aquestes dues dades, indica si cal
 # revisar el cable de fibra, comprovar el servei del proveïdor o si la connexió
 # sembla funcionar correctament.
+los_encès = input("L'indicador LOS està encès? (s/n): ").strip().lower()
+internet_encès = input("L'indicador d'Internet està encès? (s/n): ").strip().lower()
+
+if los_encès == "s":
+    print("Cal revisar el cable de fibra.")
+elif internet_encès != "s":
+    print("Cal comprovar el servei del proveïdor.")
+else:
+    print("La connexió sembla funcionar correctament.")
 
 # Exercici 9: Bateria d'un sistema d'alimentació ininterrompuda (SAI)
 # Demana el percentatge de bateria disponible al SAI que alimenta un armari
 # de comunicacions. Indica si el nivell és crític (menys del 20 %), baix
 # (del 20 % al 49 %) o suficient (50 % o més). Rebutja valors fora del rang
 # del 0 % al 100 %.
+percentatge_de_bateria = float(input("Introdueix el percentatge de bateria: "))
+
+if percentatge_de_bateria < 0 or percentatge_de_bateria > 100:
+    print("Error: el valor ha d'estar entre 0 i 100")
+elif percentatge_de_bateria < 20:
+    print("El nivell és crític")
+elif percentatge_de_bateria <= 49:
+    print("El nivell és baix")
+else:
+    print("El nivell és suficient")
+
 
 # Exercici 10: Qualitat d'una connexió de xarxa
 # Demana la latència en mil·lisegons i el percentatge de paquets perduts.
@@ -136,12 +156,42 @@ else:
 # del 3 % o menys; acceptable si és de 150 ms o menys i la pèrdua és del 5 %
 # o menys; en qualsevol altre cas, deficient.
 
+latencia = float(input("Introdueix latencia en mil·lisegons: "))
+paquets_perduts = float(input("percentatge de paquets perduts: "))
+
+if latencia < 0 or paquets_perduts < 0 or paquets_perduts > 100:
+    print("parametres no valids")
+elif latencia <= 30 and paquets_perduts <= 1:
+    print("Excel·lent")
+elif latencia <= 80 and paquets_perduts <= 3:
+    print("Bona")
+elif latencia <= 150 and paquets_perduts <= 5:
+    print("Acceptable")
+else:
+    print("Deficient")
+
 # Exercici 11: Cost mensual d'un pla de dades
 # Demana el tipus de pla (bàsic o plus) i el consum mensual en GB.
 # El pla bàsic costa 10 € i inclou 10 GB; cada GB addicional costa 1,50 €.
 # El pla plus costa 20 € i inclou 30 GB; cada GB addicional costa 0,75 €.
 # Rebutja un consum negatiu o un tipus de pla desconegut. Calcula i mostra el
 # cost total, tenint en compte que no es cobra l'excés si no se supera el límit.
+tipus_de_pla = input("tipus de pla: (basic/plus)").strip().lower()
+consum_mensual = float(input("consum mensual en GB: "))
+
+if consum_mensual < 0:
+    print("El consum no pot ser negatiu")
+elif tipus_de_pla == "basic":
+     cost = 10
+     if consum_mensual > 10:
+        cost = (consum_mensual - 10) * 1.50
+elif tipus_de_pla == "plus":
+     cost = 20
+     if consum_mensual > 30:
+         cost = (consum_mensual - 30) * 0.75
+else:
+    print("pla mensual desconegut")
+         
 
 # Exercici 12: Accés a un compte de client
 # Demana si el compte està actiu, si la contrasenya és correcta i si el codi
@@ -149,6 +199,8 @@ else:
 # i la contrasenya és correcta. Indica si l'accés es denega perquè el compte
 # està desactivat, perquè la contrasenya és incorrecta o perquè falla el codi;
 # si totes les comprovacions necessàries són correctes, permet l'accés.
+
+
 
 # Exercici 13: Diagnòstic d'un router
 # Demana si el router està encès, si l'indicador LOS del terminal òptic està
