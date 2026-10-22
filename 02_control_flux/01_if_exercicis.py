@@ -199,6 +199,19 @@ else:
 # i la contrasenya és correcta. Indica si l'accés es denega perquè el compte
 # està desactivat, perquè la contrasenya és incorrecta o perquè falla el codi;
 # si totes les comprovacions necessàries són correctes, permet l'accés.
+compte_actiu = input("digues si el compte esta actiu: (s/n)").strip().lower()
+contrasenya_correcta = input("digues si la contraseña es correcta: (s/n)").strip().lower()
+
+if compte_actiu != "s":
+    print("Accés denegat: el compte està desactivat.")
+elif contrasenya_correcta != "s":
+    print("Accés denegat: la contrasenya és incorrecta.")
+else:
+    codi_correcte = input("El codi de doble verificació és correcte? (s/n): ").strip().lower()
+    if codi_correcte == "s":
+        print("Accés permès.")
+    else:
+        print("Accés denegat: el codi de doble verificació és incorrecte.")
 
 
 
@@ -208,10 +221,38 @@ else:
 # cal encendre el router; si ja està encès, comprova si cal revisar el cable
 # de fibra (LOS encès), si cal contactar amb el proveïdor (Internet apagat) o
 # si la connexió funciona correctament. Considera els casos en aquest ordre.
+router_encès = input("El router està encès? (s/n): ").strip().lower()
 
+if router_encès != "s":
+    print("Cal encendre el router.")
+else:
+    los_encès = input("L'indicador LOS està encès? (s/n): ").strip().lower()
+    internet_encès = input("L'indicador d'Internet està encès? (s/n): ").strip().lower()
+
+    if los_encès == "s":
+        print("Cal revisar el cable de fibra.")
+    elif internet_encès != "s":
+        print("Cal contactar amb el proveïdor.")
+    else:
+        print("La connexió funciona correctament.")
 # Exercici 14: Prioritat d'una incidència de xarxa
 # Demana si la incidència afecta un servei crític, el nombre d'usuaris afectats
 # i si hi ha una alternativa de connexió disponible. Rebutja un nombre negatiu
 # d'usuaris. Assigna prioritat crítica si afecta un servei crític i no hi ha
 # alternativa, o si afecta almenys 50 usuaris i no hi ha alternativa; alta si
 # afecta almenys 10 usuaris o un servei crític; en qualsevol altre cas, baixa.
+
+servei_critic = input("La incidència afecta un servei crític? (s/n): ").strip().lower()
+usuaris = int(input("Quants usuaris estan afectats? "))
+
+if usuaris < 0:
+    print("El nombre d'usuaris no pot ser negatiu.")
+else:
+    alternativa = input("Hi ha una alternativa de connexió? (s/n): ").strip().lower()
+
+    if (servei_critic == "s" and alternativa != "s") or (usuaris >= 50 and alternativa != "s"):
+        print("Prioritat crítica.")
+    elif usuaris >= 10 or servei_critic == "s":
+        print("Prioritat alta.")
+    else:
+        print("Prioritat baixa.")
