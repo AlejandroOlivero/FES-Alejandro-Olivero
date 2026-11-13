@@ -38,19 +38,36 @@ print(factorial)
 contrasenya = input("introdueix contrasenya:")
 while len(contrasenya) < 8:
     print("segueix introduint contrasenya: ")
-    if len(contrasenya) > 8:
-        print("contrasenya vàlida")
+    contrasenya = input("segueix introduint contrasenya:")
+   
+print("contrasenya vàlida")
 
 # Exercici 5: Taula de multiplicar
 # Demana a l'usuari que introdueixi un número.
 # Imprimeix la taula de multiplicar d'aquest número (de l'1 al 10) fent servir un bucle while.
+numero = int(input("introduexi numero: "))
+multiplicador = 1
 
-
+while multiplicador <= 10:
+  resultat = numero * multiplicador
+  print(f"{numero} x {multiplicador} = {resultat}")
+  multiplicador += 1
 # Exercici 6: Números primers fins a N
 # Demana a l'usuari que introdueixi un número enter positiu N.
 # Imprimeix tots els números primers menors o iguals que N fent servir un bucle while.
 # Un número és primer si només és divisible per 1 i per ell mateix.
-
+n = int(input("Introdueix un número enter positiu N: "))
+numero = 2
+while numero <= n:
+  es_primer = True 
+  divisor = 2
+  while divisor * divisor <= numero:  
+    if numero % divisor == 0:
+      es_primer = False  
+      break  
+    divisor += 1
+  if es_primer:
+    print(numero)
 
 
 # Exercici 7: Suma fins al zero
